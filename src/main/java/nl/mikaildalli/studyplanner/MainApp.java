@@ -3,7 +3,6 @@ package nl.mikaildalli.studyplanner;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import nl.mikaildalli.studyplanner.ui.AppView;
 
 public class MainApp extends Application {
 

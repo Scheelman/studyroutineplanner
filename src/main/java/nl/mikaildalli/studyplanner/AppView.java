@@ -1,9 +1,10 @@
-package nl.mikaildalli.studyplanner.ui;
+package nl.mikaildalli.studyplanner;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import nl.mikaildalli.studyplanner.ui.TaskView;
 
 public class AppView extends BorderPane {
 

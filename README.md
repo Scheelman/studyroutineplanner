@@ -8,14 +8,14 @@ Doel van dit project: aantonen dat ik een werkende Java applicatie kan bouwen, g
 
 
 Inhoudsopgave
-- [Functionaliteiten](#functionaliteiten)
-- [Technologieën](#technologieën)
-- [Installatie en Run](#installatie-en-run)
-- [Database import](#database-import)
-- [Implementatieplan (4B3)](#implementatieplan-4b3)
-- [Testen](#testen)
-- [Projectstatus](#projectstatus)
-- [Bronnen](#bronnen)
+- [Functionaliteiten]
+- [Technologieën]
+- [Installatie en Run]
+- [Database import]
+- [Implementatieplan
+- [Testen]
+- [Projectstatus]
+- [Bronnen]
 
 ---
 
