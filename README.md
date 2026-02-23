@@ -5,10 +5,11 @@ Study Planner en Routine Planner BP2 is een JavaFX desktop applicatie waarmee je
 Je kunt taken aanmaken, bekijken, aanpassen en verwijderen (CRUD). De data wordt opgeslagen in een MySQL
 Doel van dit project: aantonen dat ik een werkende Java applicatie kan bouwen, gekoppeld aan een database, inclusief acceptatietesten.
 ___
-Instructies om te runnen: 
-Download JavaFX SDK
+Instructies om te runnen:
 
-Run command: java --module-path "...\lib" --add-modules javafx.controls,javafx.fxml -jar studyplannerbp2.jar”
+Via main app runnen anders naar maven -> plugins -> javafx -> run
+
+
 ___
 Implementatieplan
 1. Huidige staat februari 2026
