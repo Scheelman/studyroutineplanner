@@ -8,6 +8,7 @@ ___
 Instructies om te runnen:
 
 Via main app runnen anders naar maven -> plugins -> javafx -> run
+
 in vm options: --module-path "C:\Users\m\Downloads\openjfx-25.0.2_windows-x64_bin-sdk\javafx-sdk-25.0.2\lib" --add-modules javafx.controls
 
 ___
