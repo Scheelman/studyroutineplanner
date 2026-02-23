@@ -4,112 +4,176 @@ Introductie
 Study Planner en Routine Planner BP2 is een JavaFX desktop applicatie waarmee je taken kunt beheren.
 Je kunt taken aanmaken, bekijken, aanpassen en verwijderen (CRUD). De data wordt opgeslagen in een MySQL
 Doel van dit project: aantonen dat ik een werkende Java applicatie kan bouwen, gekoppeld aan een database, inclusief acceptatietesten.
+___
+Instructies om te runnen: 
+Download JavaFX SDK
 
-
-
-Inhoudsopgave
-- [Functionaliteiten]
-- [Technologieën]
-- [Installatie en Run]
-- [Database import]
-- [Implementatieplan
-- [Testen]
-- [Projectstatus]
-- [Bronnen]
-
----
-
-Functionaliteiten
-Taken (CRUD)
-- Overzicht van taken in een TableView
-- Nieuwe taak toevoegen (titel, omschrijving, deadline, status, categorie)
-- Taak bewerken
-- Taak verwijderen (met bevestiging)
-- Refresh (opnieuw laden vanuit database)
-
-Database
-- Tabellen: `task`, `status`, `category` (+ voorbereid: `routine`, `routine_log`)
-- PK/FK relaties + indexes
-- JOIN query zodat status/categorie als naam wordt getoond
-
----
-
-Technologieën
-- Java
-- JavaFX
-- Maven
-- MySQL (via XAMPP/phpMyAdmin)
-- JDBC
-
-
-
-Installatie en Run
-Vereisten
-- Java JDK geïnstalleerd
-- Maven via IntelliJ
-- XAMPP met MySQL aan
-
-Run via IntelliJ
-1. Open project in IntelliJ
-2. Import Maven dependencies (pom.xml)
-3. Start MySQL (XAMPP)
-4. Run `MainApp`
-
-Run via Maven (optioneel)
-
-Database impor
-1. Start XAMPP en zet MySQL aan
-2. Open phpMyAdmin
-3. Maak database aan: `studyplanner_bp2`
-4. Importeer `db/structure.sql`
-5. Controle: tabellen bestaan (`task`, `status`, `category', etc.)
-
-
-
+Run command: java --module-path "...\lib" --add-modules javafx.controls,javafx.fxml -jar studyplannerbp2.jar”
+___
 Implementatieplan
+1. Huidige staat februari 2026
 
-1. Huidige staat
-- Applicatie werkt lokaal via IntelliJ..
-- Database draait lokaal via XAMPP/MySQL.
-- Taken CRUD is getest.
-- Database-structuur staat in `db/structure.sql`.
-- Testdocumenten staan in `docs/`.
+De applicatie is functioneel en werkt lokaal via IntelliJ.
+De database draait via XAMPP MySql
 
-2. Stappen naar oplevering
-1. controleren: `src/`, `pom.xml`, `README.md`, `db/structure.sql`, `docs/` aanwezig.
-2. `.gitignore` check: `target/` en `.idea/` niet uploaden.
-3. Fresh DB test:
-    - drop database
-    - opnieuw import `structure.sql`
-    - app starten en CRUD uitvoeren
-4. Oplevering:
-    - laatste push naar GitHub
-    - controleer dat run-stappen in README kloppen
+Op dit moment zijn de volgende onderdelen afgerond:
 
-3. Tijdlijn (planning)
-- Dag 1: README + implementatieplan afronden
-- Dag 2: bewijs-screenshots toevoegen in `docs/test-evidence/` + final test
-- Dag 3: laatste check + inleveren
+CRUD-functionaliteit voor taken (Create, Read, Update, Delete)
 
-4. Communicatie + evaluatie/verificatie
-   Communicatie
-- Alles staat in GitHub repo. README bevat installatie- en run-stappen.
+TableView gekoppeld aan database via JOIN query
 
-Evaluatie / verificatie
-- Acceptatietest uitgevoerd met testgevallen spreadsheet.
-- Resultaten samengevat in testrapport.
-- Verificatie door “fresh install” test (DB opnieuw importeren + CRUD testen).
+Status en categorie worden als naam getoond in plaats van ID
 
----
+Validatie bij invoer (titel en status verplicht)
 
-Testen
-- Testgevallen: `docs/Testgevallen_BP2_StudyPlanner.xlsx`
-- Testrapport: `docs/Testrapport_BP2_StudyPlanner_v2.docx`
+Bevestiging bij verwijderen van een taak
 
----
+Unit tests voor het Task-model
 
-Projectstatus
-- Taken (CRUD): afgerond en getest.
-- Routines/RoutineLog: voorbereid in database, buiten scope van huidige testse
+Acceptatietest uitgevoerd met bijbehorend testrapport
 
+Database-structuur beschikbaar in db/structure.sql
+
+
+___
+2. Realisatieproces 
+Fase 1  Database ontwerp en implementatie
+10 februari 2026
+
+
+Tabellen aangemaakt: task, status, category
+
+Primary keys en foreign keys ingesteld
+
+Relaties gecontroleerd
+
+structure.sql export gemaakt
+
+Testdata ingevoerd
+
+Doel van deze fase: een stabiele en correcte databasebasis maken.
+
+
+
+___
+Fase 2 – JavaFX basisstructuur
+
+12 februari 2026
+
+MainApp opgezet
+
+AppView met BorderPane layout gemaakt
+
+Sidebar navigatie toegevoegd (Dashboard / Tasks / Notes)
+
+Schermen gescheiden in aparte classes
+
+Doel van deze fase: duidelijke scheiding tussen UI-onderdelen.
+
+
+
+
+
+
+___
+Fase 3 – CRUD implementatie
+
+13–15 februari 2026
+
+Database.java aangemaakt alle queries in een class
+
+PreparedStatements gebruikt voor veilige SQL
+
+getAllTasksWithJoin() gemaakt met JOIN query
+
+TableView gekoppeld aan Task-model
+
+Dialog toegevoegd voor toevoegen/bewerken
+
+Delete met bevestiging (Alert)
+
+Refresh functie geïmplementeerd
+
+Doel van deze fase: volledige werkende takenmodule.
+
+
+
+
+___
+Fase 4 – Testen en afronding
+
+16–17 februari 2026
+
+Testgevallen uitgevoerd (Excel)
+
+Testrapport ingevuld
+
+Unit tests toegevoegd (JUnit 5)
+
+Fresh database test uitgevoerd
+
+README uitgebreid met installatie- en run-stappen
+
+Artefact gebouwd via Build Artifact
+
+Doel van deze fase: controle van het eind resultaat
+
+3. Stappen richting oplevering
+
+Voor de definitieve oplevering zijn de volgende controles uitgevoerd:
+
+Controle projectstructuur:
+
+src/
+
+pom.xml
+
+README.md
+
+db/structure.sql
+
+docs/
+
+.gitignore gecontroleerd
+
+
+Fresh install test:
+
+Database verwijderd
+
+structure.sql opnieuw geimporteerd
+
+Applicatie gestart
+
+CRUD volledig getest
+
+Artefact:
+
+Build Artifact uitgevoerd
+
+JAR getest via IntelliJ en module-path
+
+Laatste commit en push naar GitHub uitgevoerd.
+
+4. Verificatie en validatie
+
+De werking van de applicatie is gecontroleerd door:
+
+Handmatige tests van CRUD
+
+Acceptatietest volgens testgevallen
+
+Unit tests voor het Task-model
+
+5. Projectstatus
+
+Takenmodule: afgerond en volledig getest
+
+Routine/RoutineLog: database voorbereid, maar buiten scope van deze realisatie
+
+Code voorzien van comments
+
+Unit tests aanwezig
+
+Artefact beschikbaar
 

@@ -7,47 +7,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Database.java (stijl 1)
- * --------------------------------------------
- * In de oefenopdrachten staat vaak alle SQL in één class.
- * Dat is handig omdat je docent direct ziet:
- * - welke CRUD queries je gebruikt
- * - dat je PreparedStatements gebruikt (veilig en professioneel)
- * - dat je resources netjes sluit (try-with-resources)
- *
- * In deze class staan:
- * - READ (taken met JOIN)  ✅
- * - CREATE (taak toevoegen) ✅
- * - UPDATE (taak aanpassen) ✅
- * - DELETE (taak verwijderen) ✅
- * + extra READs voor status/category (voor ComboBoxes)
- */
+// Database.java
+// /* READ (taken met JOIN)
+// CREATE (Taken toevoegen)
+// UPDATE (Taken aanpassen)
+// DELETE (Taken verwijderen)
 public class Database {
 
     private static final String URL =
             "jdbc:mysql://localhost:3306/studyplanner_bp2?serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASS = ""; // vul in als je een wachtwoord hebt
+    private static final String PASS = "";
 
-    /**
-     * Maakt een nieuwe connectie aan.
-     * We maken bewust geen "global" connection die altijd open blijft,
-     * omdat dat vaak errors geeft. Met try-with-resources sluit alles netjes.
-     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
 
-    // =========================================================
-    // READ: Taken ophalen (met JOIN)
-    // =========================================================
-
-    /**
-     * Haalt alle taken op inclusief statusnaam en categorienaam.
-     * Dit is een READ query met JOIN, zodat je in de UI geen losse ID's ziet,
-     * maar gewoon "TODO" en "School".
-     */
+    // Haalt alle taken op inclusief statusnaam en categorienaam
+    // Taken ophalen met JOIN
     public List<Task> getAllTasksWithJoin() {
         String sql = """
             SELECT t.id, t.title, t.description, t.deadline,
@@ -90,15 +67,9 @@ public class Database {
         return tasks;
     }
 
-    // =========================================================
-    // CREATE: Taak toevoegen
-    // =========================================================
 
-    /**
-     * Voegt een nieuwe taak toe (CREATE).
-     * We gebruiken PreparedStatement om SQL injection te voorkomen
-     * en om netjes met null-waardes te kunnen werken.
-     */
+    // CREATE: Taak toevoegen
+//    nieuwe taken toevoegen
     public void insertTask(String title, String description, LocalDate deadline,
                            int statusId, Integer categoryId) {
         String sql = """
@@ -127,13 +98,8 @@ public class Database {
         }
     }
 
-    // =========================================================
     // UPDATE: Taak aanpassen
-    // =========================================================
-
-    /**
-     * Past een taak aan (UPDATE) op basis van id.
-     */
+    // Aanpassen van taken (UPDATE) basis van id
     public void updateTask(int id, String title, String description, LocalDate deadline,
                            int statusId, Integer categoryId) {
         String sql = """
@@ -165,13 +131,8 @@ public class Database {
         }
     }
 
-    // =========================================================
     // DELETE: Taak verwijderen
-    // =========================================================
-
-    /**
-     * Verwijdert een taak op basis van id (DELETE).
-     */
+// Verwijderen van taken op basiss van id
     public void deleteTaskById(int id) {
         String sql = "DELETE FROM task WHERE id = ?";
 
@@ -186,28 +147,21 @@ public class Database {
         }
     }
 
-    // =========================================================
-    // Extra: Status + Category ophalen (voor ComboBox)
-    // =========================================================
 
-    /**
-     * Haalt alle statussen op (id + name).
-     * Handig voor een ComboBox in je "Nieuwe taak" scherm.
-     */
+    //  Status + Category ophalen (voor ComboBox)
+// Verwijderen van taken op basiss van id
+
     public List<IdName> getAllStatuses() {
         return getAllIdNames("SELECT id, name FROM status ORDER BY id");
     }
 
-    /**
-     * Haalt alle categorieën op (id + name).
-     */
+
     public List<IdName> getAllCategories() {
         return getAllIdNames("SELECT id, name FROM category ORDER BY name");
     }
 
-    /**
-     * Helper method: maakt van een SELECT id,name een lijst IdName objecten.
-     */
+
+    // Helper method: maakt van SELECT idm name een lijst idname objecten
     private List<IdName> getAllIdNames(String sql) {
         List<IdName> list = new ArrayList<>();
 
@@ -226,10 +180,7 @@ public class Database {
         return list;
     }
 
-    /**
-     * Klein hulpklasse voor ComboBox:
-     * We bewaren id + naam, en tonen in de UI automatisch de naam via toString().
-     */
+    // Bewaren van id en naam en tonen in de UI automatisch
     public static class IdName {
         private final int id;
         private final String name;

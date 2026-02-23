@@ -2,11 +2,9 @@ package nl.mikaildalli.studyplanner.model;
 
 import java.time.LocalDate;
 
-/**
- * Task model:
- * - IDs (statusId/categoryId) zijn nodig voor UPDATE/DELETE
- * - namen (statusName/categoryName) zijn handig voor TableView (JOIN)
- */
+// Task Model:
+// ID is nodig voor UPDATE/DELETE
+// namen komen uit JOIN voor TableView
 public class Task {
     private final int id;
     private final String title;

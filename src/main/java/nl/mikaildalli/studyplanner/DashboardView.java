@@ -4,6 +4,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+// Dasboard view
+// CRUD functie
 public class DashboardView extends VBox {
     public DashboardView() {
         setPadding(new Insets(16));

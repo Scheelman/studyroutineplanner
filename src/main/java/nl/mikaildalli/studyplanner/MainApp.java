@@ -4,13 +4,18 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// MainApp begin van de javafx applicatie
+// Start de Javafx en maakt een scene aan
+// Appview layout me sidebnar
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        AppView root = new AppView();                 // ✅ start de app met sidebar
+//        Appview : bevat dashboard, tasks en notes
+        AppView root = new AppView();
+//        Grootte van de venster
         Scene scene = new Scene(root, 1100, 650);
-
+//        CSS laden uit de resources map
         scene.getStylesheets().add(
                 getClass().getResource("/style.css").toExternalForm()
         );
@@ -21,6 +26,6 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);                                  // ✅ alleen launch hier
+        launch(args);
     }
 }

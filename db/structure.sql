@@ -5,21 +5,21 @@ CREATE DATABASE IF NOT EXISTS studyplanner_bp2;
 USE studyplanner_bp2;
 
 -- ===== STATUS =====
--- Lookup tabel: status van een taak
+-- tatus van een taak
 CREATE TABLE IF NOT EXISTS status (
                                       id INT AUTO_INCREMENT PRIMARY KEY,
                                       name VARCHAR(30) NOT NULL UNIQUE
     );
 
 
--- Lookup tabel: categorie van een taak bijv School/Werk
+-- categorie van een taak bijv School/Werk
 CREATE TABLE IF NOT EXISTS category (
                                         id INT AUTO_INCREMENT PRIMARY KEY,
                                         name VARCHAR(50) NOT NULL UNIQUE
     );
 
 -- ===== TASK =====
--- Hoofdtabel: taken die de gebruiker beheert.
+-- taken die de gebruiker beheert.
 CREATE TABLE IF NOT EXISTS task (
                                     id INT AUTO_INCREMENT PRIMARY KEY,
                                     title VARCHAR(120) NOT NULL,
@@ -40,13 +40,13 @@ CREATE TABLE IF NOT EXISTS task (
     ON DELETE SET NULL
     );
 
--- Indexen: dit helpt met performance bij filteren/sorteren
+-- Indexen: dit helpt met performance bij sorteren
 CREATE INDEX idx_task_status ON task(status_id);
 CREATE INDEX idx_task_category ON task(category_id);
 CREATE INDEX idx_task_deadline ON task(deadline);
 
--- ===== ROUTINE =====
--- Tabel met routines (bijv. "Workout", "Studeren")
+-- ===== ROUTINE
+-- Tabel met routines
 CREATE TABLE IF NOT EXISTS routine (
                                        id INT AUTO_INCREMENT PRIMARY KEY,
                                        name VARCHAR(80) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS routine (
 
 -- ===== ROUTINE_LOG =====
 -- Logt wanneer een routine is uitgevoerd.
--- UNIQUE (routine_id, log_date) zorgt dat je een routine maar 1 keer per dag kunt afvinken.
+--
 CREATE TABLE IF NOT EXISTS routine_log (
                                            id INT AUTO_INCREMENT PRIMARY KEY,
                                            routine_id INT NOT NULL,
@@ -75,6 +75,6 @@ CREATE INDEX idx_log_routine ON routine_log(routine_id);
 CREATE INDEX idx_log_date ON routine_log(log_date);
 
 -- ===== SEED DATA =====
--- We zetten alvast basiswaarden zodat de app direct werkt.
+-- We zetten alvast basiswaarden zodat de app direct werkt
 INSERT IGNORE INTO status (name) VALUES ('TODO'), ('DOING'), ('DONE');
 INSERT IGNORE INTO category (name) VALUES ('School'), ('Werk'), ('Gezondheid');
