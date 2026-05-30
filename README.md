@@ -1,181 +1,137 @@
-Study Planner en Routine Planner (JavaFX en MySQL)
+## Implementatieplan
 
-Introductie
-Study Planner en Routine Planner BP2 is een JavaFX desktop applicatie waarmee je taken kunt beheren.
-Je kunt taken aanmaken, bekijken, aanpassen en verwijderen (CRUD). De data wordt opgeslagen in een MySQL
-Doel van dit project: aantonen dat ik een werkende Java applicatie kan bouwen, gekoppeld aan een database, inclusief acceptatietesten.
-___
-Instructies om te runnen:
+Mikail Dalli
 
-Via main app runnen anders naar maven -> plugins -> javafx -> run
+Studentnummer: 2203898
 
-in vm options: --module-path "C:\Users\m\Downloads\openjfx-25.0.2_windows-x64_bin-sdk\javafx-sdk-25.0.2\lib" --add-modules javafx.controls
+### 1. Huidige staat
 
-___
-Implementatieplan
-1. Huidige staat februari 2026
+De applicatie werkt lokaal via IntelliJ.  
+De database draait via XAMPP/MySQL.
 
-De applicatie is functioneel en werkt lokaal via IntelliJ.
-De database draait via XAMPP MySql
+Op dit moment zijn de belangrijkste onderdelen afgerond:
 
-Op dit moment zijn de volgende onderdelen afgerond:
+- CRUD-functionaliteit voor taken
+- TableView gekoppeld aan de database via een JOIN-query
+- status en categorie worden als naam getoond
+- validatie bij invoer
+- bevestiging bij verwijderen
+- OOP uitgebreid met `PlannerItem`, `Task` en `Routine`
+- `TaskService` toegevoegd als tussenlaag
+- minimaal 5 unit tests aanwezig
+- acceptatietesten uitgevoerd
+- database beschikbaar via `db/structure.sql`
+- artefact/JAR getest
 
-CRUD-functionaliteit voor taken (Create, Read, Update, Delete)
+---
 
-TableView gekoppeld aan database via JOIN query
+### 2. Realisatieproces met planning
 
-Status en categorie worden als naam getoond in plaats van ID
+#### Fase 1 — Database  
+**10 februari 2026 — ongeveer 19:00–21:00**
 
-Validatie bij invoer (titel en status verplicht)
+In deze fase heb ik de database opgezet.
 
-Bevestiging bij verwijderen van een taak
+Gedaan:
 
-Unit tests voor het Task-model
+- tabellen aangemaakt: `task`, `status`, `category`
+- `routine` en `routine_log` voorbereid
+- primary keys en foreign keys ingesteld
+- indexen toegevoegd
+- `structure.sql` export gemaakt
+- testdata toegevoegd
 
-Acceptatietest uitgevoerd met bijbehorend testrapport
+Doel: een stabiele databasebasis maken.
 
-Database-structuur beschikbaar in db/structure.sql
+---
 
+#### Fase 2 — JavaFX basis  
+**12 februari 2026 — ongeveer 18:30–21:30**
 
-___
-2. Realisatieproces 
-Fase 1  Database ontwerp en implementatie
-10 februari 2026
+In deze fase heb ik de basis van de applicatie gemaakt.
 
+Gedaan:
 
-Tabellen aangemaakt: task, status, category
+- `MainApp` opgezet
+- `AppView` gemaakt met BorderPane
+- navigatie toegevoegd naar Dashboard, Tasks en Notes
+- schermen gescheiden in aparte classes
 
-Primary keys en foreign keys ingesteld
+Doel: een duidelijke basisstructuur maken.
 
-Relaties gecontroleerd
+---
 
-structure.sql export gemaakt
+#### Fase 3 — CRUD  
+**13 t/m 15 februari 2026 — avonden**
 
-Testdata ingevoerd
+In deze fase heb ik de takenmodule gemaakt.
 
-Doel van deze fase: een stabiele en correcte databasebasis maken.
+Gedaan:
 
+- `Database.java` gemaakt
+- SQL-methodes gemaakt voor CRUD
+- PreparedStatements gebruikt
+- JOIN-query gemaakt
+- TableView gekoppeld aan `Task`
+- dialog gemaakt voor toevoegen en bewerken
+- verwijderen met bevestiging toegevoegd
+- refresh toegevoegd
 
+Doel: werkende CRUD-functionaliteit voor taken.
 
-___
-Fase 2 – JavaFX basisstructuur
+---
 
-12 februari 2026
+#### Fase 4 — Verbeteringen na feedback  
+**Mei 2026 — meerdere avonden**
 
-MainApp opgezet
+Na de feedback heb ik de Java-kant verbeterd.
 
-AppView met BorderPane layout gemaakt
+Gedaan:
 
-Sidebar navigatie toegevoegd (Dashboard / Tasks / Notes)
+- `PlannerItem` toegevoegd
+- `Task` en `Routine` laten erven van `PlannerItem`
+- `getType()` overschreven voor polymorfisme
+- `TaskService` toegevoegd als tussenlaag
+- `TaskView` aangepast zodat deze `TaskService` gebruikt
+- unit tests uitgebreid naar minimaal 5
+- artefact opnieuw gebouwd en getest
 
-Schermen gescheiden in aparte classes
+Doel: beter aansluiten op de lesstof en feedback.
 
-Doel van deze fase: duidelijke scheiding tussen UI-onderdelen.
+---
 
+### 3. Controles richting oplevering
 
+Voor de oplevering heb ik gecontroleerd:
 
+- projectstructuur (`src/`, `pom.xml`, `README.md`, `db/`, `docs/`)
+- `.gitignore`
+- database opnieuw geïmporteerd via `structure.sql`
+- CRUD volledig getest
+- unit tests uitgevoerd
+- artefact/JAR getest via PowerShell
+- laatste commits gepusht naar GitHub
 
+---
 
+### 4. Verificatie en validatie
 
-___
-Fase 3 – CRUD implementatie
+De werking is gecontroleerd door:
 
-13–15 februari 2026
+- handmatige CRUD-tests
+- acceptatietesten
+- unit tests
+- fresh database test
+- artifact test via PowerShell
 
-Database.java aangemaakt alle queries in een class
+---
 
-PreparedStatements gebruikt voor veilige SQL
+### 5. Projectstatus
 
-getAllTasksWithJoin() gemaakt met JOIN query
-
-TableView gekoppeld aan Task-model
-
-Dialog toegevoegd voor toevoegen/bewerken
-
-Delete met bevestiging (Alert)
-
-Refresh functie geïmplementeerd
-
-Doel van deze fase: volledige werkende takenmodule.
-
-
-
-
-___
-Fase 4 – Testen en afronding
-
-16–17 februari 2026
-
-Testgevallen uitgevoerd (Excel)
-
-Testrapport ingevuld
-
-Unit tests toegevoegd (JUnit 5)
-
-Fresh database test uitgevoerd
-
-README uitgebreid met installatie- en run-stappen
-
-Artefact gebouwd via Build Artifact
-
-Doel van deze fase: controle van het eind resultaat
-
-3. Stappen richting oplevering
-
-Voor de definitieve oplevering zijn de volgende controles uitgevoerd:
-
-Controle projectstructuur:
-
-src/
-
-pom.xml
-
-README.md
-
-db/structure.sql
-
-docs/
-
-.gitignore gecontroleerd
-
-
-Fresh install test:
-
-Database verwijderd
-
-structure.sql opnieuw geimporteerd
-
-Applicatie gestart
-
-CRUD volledig getest
-
-Artefact:
-
-Build Artifact uitgevoerd
-
-JAR getest via IntelliJ en module-path
-
-Laatste commit en push naar GitHub uitgevoerd.
-
-4. Verificatie en validatie
-
-De werking van de applicatie is gecontroleerd door:
-
-Handmatige tests van CRUD
-
-Acceptatietest volgens testgevallen
-
-Unit tests voor het Task-model
-
-5. Projectstatus
-
-Takenmodule: afgerond en volledig getest
-
-Routine/RoutineLog: database voorbereid, maar buiten scope van deze realisatie
-
-Code voorzien van comments
-
-Unit tests aanwezig
-
-Artefact beschikbaar
-
+- Takenmodule: afgerond en getest
+- Database: afgerond
+- OOP: uitgebreid met overerving en polymorfisme
+- TaskService: toegevoegd
+- Unit tests: minimaal 5 aanwezig
+- Artefact: beschikbaar en getest
+- Routine/RoutineLog: voorbereid in database, buiten scope
